@@ -14,7 +14,7 @@ ADD . /base
 WORKDIR /base
 
 # Create volumes (folders). one (data) to store data and the other(notebooks) to save your code.
-VOLUME ["/model1/data", "/model1/notebooks"]
+VOLUME ["/base/data", "/base/notebooks"]
 
 # Expose your port 8888
 EXPOSE 8888
