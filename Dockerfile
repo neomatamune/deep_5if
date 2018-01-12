@@ -8,10 +8,10 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 # create a folder called model1 and copy all the files in the folder into that folder
-ADD . /model1
+ADD . /base
 
 # Make model1 your work directory
-WORKDIR /model1
+WORKDIR /base
 
 # Create volumes (folders). one (data) to store data and the other(notebooks) to save your code.
 VOLUME ["/model1/data", "/model1/notebooks"]
