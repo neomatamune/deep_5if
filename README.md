@@ -8,3 +8,6 @@ http://caffe.berkeleyvision.org/tutorial/
 
 ## Site de Duffner :
 http://www.duffner-net.de/
+
+## Use Caffe with Docker :
+https://towardsdatascience.com/playing-with-caffe-and-docker-to-build-deep-learning-models-99c9570ffc3d
