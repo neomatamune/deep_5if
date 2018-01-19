@@ -1,9 +1,13 @@
-name: "LeNet"
 layer {
-  name: "data"
-  type: "Input"
+  name: "Trainset"
+  type: "Data"
   top: "data"
-  input_param { shape: { dim: 10000 dim: 1 dim: 28 dim: 28 } }
+  top: "labels"
+  data_param {
+    source: "../data/test_lmdb"
+    backend: LMDB
+    batch_size: 64
+  }
 }
 layer {
   name: "conv1"
@@ -17,7 +21,8 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 20
+    num_output: 5
+#group: 5
     kernel_size: 5
     stride: 1
     weight_filler {
@@ -34,10 +39,16 @@ layer {
   bottom: "conv1"
   top: "pool1"
   pooling_param {
-    pool: MAX
+    pool: AVE
     kernel_size: 2
     stride: 2
   }
+}
+layer {
+  name: "sig1"
+  type: "Sigmoid"
+  bottom: "pool1"
+  top: "pool1"
 }
 layer {
   name: "conv2"
@@ -51,7 +62,8 @@ layer {
     lr_mult: 2
   }
   convolution_param {
-    num_output: 50
+    num_output: 10
+#group: 10
     kernel_size: 5
     stride: 1
     weight_filler {
@@ -74,6 +86,12 @@ layer {
   }
 }
 layer {
+  name: "sig2"
+  type: "Sigmoid"
+  bottom: "pool2"
+  top: "pool2"
+}
+layer {
   name: "ip1"
   type: "InnerProduct"
   bottom: "pool2"
@@ -85,7 +103,7 @@ layer {
     lr_mult: 2
   }
   inner_product_param {
-    num_output: 500
+    num_output: 50
     weight_filler {
       type: "xavier"
     }
@@ -95,8 +113,8 @@ layer {
   }
 }
 layer {
-  name: "relu1"
-  type: "ReLU"
+  name: "sig3"
+  type: "Sigmoid"
   bottom: "ip1"
   top: "ip1"
 }
@@ -112,7 +130,7 @@ layer {
     lr_mult: 2
   }
   inner_product_param {
-    num_output: 10
+    num_output: 2
     weight_filler {
       type: "xavier"
     }
@@ -125,5 +143,5 @@ layer {
   name: "prob"
   type: "Softmax"
   bottom: "ip2"
-top: "prob"
+  top: "prob"
 }
