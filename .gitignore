@@ -102,3 +102,24 @@ ENV/
 
 .idea/*
 data/*
+
+notebooks/deep_iter_10000.caffemodel
+notebooks/deep_iter_10000.solverstate
+notebooks/deep_iter_15000.caffemodel
+notebooks/deep_iter_15000.solverstate
+notebooks/deep_iter_20000.caffemodel
+notebooks/deep_iter_20000.solverstate
+notebooks/deep_iter_25000.caffemodel
+notebooks/deep_iter_25000.solverstate
+notebooks/deep_iter_30000.caffemodel
+notebooks/deep_iter_30000.solverstate
+notebooks/deep_iter_35000.caffemodel
+notebooks/deep_iter_35000.solverstate
+notebooks/deep_iter_40000.caffemodel
+notebooks/deep_iter_40000.solverstate
+notebooks/deep_iter_45000.caffemodel
+notebooks/deep_iter_45000.solverstate
+notebooks/deep_iter_5000.caffemodel
+notebooks/deep_iter_5000.solverstate
+
+.directory

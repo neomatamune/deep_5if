@@ -26,7 +26,7 @@ Successfully built 554f78aa2d91
 Successfully tagged deep:latest
 ```
 
-The first one should return something like:
+The second one should return something like:
 
 ```
 52aac7bf9976a85dd9b98258dc350bbe790acb94152c33884f6b3885a21bf31a
@@ -49,7 +49,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 Once this is done, you should have a "data" folder in your cloned repository. Copy the test_images and train_images data folders into it. Then open a bash in the container :
 
 ```bash
-sudo docker exec -it deep_jupyter \bin\bash
+sudo docker exec -it deep_jupyter /bin/bash
 ```
 
 And run the following commands inside to build the image database :
