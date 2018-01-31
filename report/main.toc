@@ -2,6 +2,9 @@
 \contentsline {section}{Table des mati\`eres}{1}{section*.1}
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}
 \contentsline {section}{\numberline {2}Running the project}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Prerequisites}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Quickstart}{2}{subsection.2.2}
+\contentsline {paragraph}{}{2}{section*.2}
 \contentsline {section}{\numberline {3}Description of the work}{2}{section.3}
 \contentsline {subsection}{\numberline {3.1}Setting up Caffe to be used through PyCaffe and Docker}{2}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Training the network}{2}{subsection.3.2}
@@ -9,10 +12,10 @@
 \contentsline {subsubsection}{\numberline {3.2.2}Adjusting the Docker image for better performances during training}{2}{subsubsection.3.2.2}
 \contentsline {subsection}{\numberline {3.3}Evaluating the detection performance of our NN}{2}{subsection.3.3}
 \contentsline {subsubsection}{\numberline {3.3.1}Code}{2}{subsubsection.3.3.1}
-\contentsline {paragraph}{Basic setup of neural network}{2}{section*.2}
-\contentsline {paragraph}{Compute the accuracy of the previously trained neural network on the training dataset (see 01\_CNN\_Training notebook) by using the accuracy layer of the network (defined in conv.prototxt)}{2}{section*.3}
-\contentsline {paragraph}{Evaluate the accuracy of the previously trained neural network on the test dataset}{3}{section*.4}
-\contentsline {subsection}{\numberline {3.4}Implementing a naive face detector}{3}{subsection.3.4}
-\contentsline {paragraph}{Basic setup of neural network}{3}{section*.5}
-\contentsline {paragraph}{Implementation of face detector}{4}{section*.6}
-\contentsline {section}{\numberline {4}Conclusion}{5}{section.4}
+\contentsline {paragraph}{Basic setup of neural network}{2}{section*.3}
+\contentsline {paragraph}{Compute the accuracy of the previously trained neural network on the training dataset (see 01\_CNN\_Training notebook) by using the accuracy layer of the network (defined in conv.prototxt)}{3}{section*.4}
+\contentsline {paragraph}{Evaluate the accuracy of the previously trained neural network on the test dataset}{3}{section*.5}
+\contentsline {subsection}{\numberline {3.4}Implementing a naive face detector}{4}{subsection.3.4}
+\contentsline {paragraph}{Basic setup of neural network}{4}{section*.6}
+\contentsline {paragraph}{Implementation of face detector}{4}{section*.7}
+\contentsline {section}{\numberline {4}Conclusion}{6}{section.4}

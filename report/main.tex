@@ -43,9 +43,79 @@
 
 \section{Introduction}
 
+
+
 \section{Running the project}
 
+\subsection{Prerequisites}
 
+Please run it preferably on a GNU/Linux distribution. You should also have installed the latest version available to you of Git and Docker (google them to find their installation instructions for your OS).
+
+\subsection{Quickstart}
+
+\paragraph{} Clone this repository:
+
+\begin{minted}{bash}
+git clone
+\end{minted}
+
+\paragraph{} Run the build.sh, then start\_jupyter, both with sudo rights if you haven't set your user so that you can use docker commands without being root.
+
+\begin{minted}{bash}
+sudo ./build.sh
+sudo ./start_jupyter.sh
+\end{minted}
+
+\paragraph{} The first command log should end with a message like the following:
+
+\end{minted}
+Successfully built 554f78aa2d91
+Successfully tagged deep:latest
+\end{minted}
+
+\paragraph{} The second one should return something like:
+
+\end{minted}
+52aac7bf9976a85dd9b98258dc350bbe790acb94152c33884f6b3885a21bf31a
+\end{minted}
+
+\paragraph{} You can check whether the container started properly by writing:
+
+\begin{minted}{bash}
+sudo docker ps -a
+\end{minted}
+
+\paragraph{} If everything is fine you should get a line like the following (what matters here is that the "STATUS" field):
+
+\end{minted}
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS                    NAMES
+52aac7bf9976        deep                "/bin/sh -c 'jupyter…"   13 minutes ago      Up 13 minutes             0.0.0.0:8887->8888/tcp   deep_jupyter
+
+\end{minted}
+
+\paragraph{} Once this is done, you should have a "data" folder in your cloned repository. Copy the test_images and train_images data folders into it. Then open a bash in the container :
+
+\begin{minted}{bash}
+sudo docker exec -it deep_jupyter /bin/bash
+\end{minted}
+
+\paragraph{} And run the following commands inside to build the image database :
+
+\begin{minted}{bash}
+cd data
+
+/opt/caffe/build/tools/convert_imageset --shuffle --gray train_images/ posneg.txt train_lmdb
+
+/opt/caffe/build/tools/convert_imageset --shuffle --gray test_images/ testposneg.txt test_lmdb
+
+/opt/caffe/build/tools/compute_image_mean train_lmdb/ train_mean.binaryproto
+
+/opt/caffe/build/tools/compute_image_mean test_lmdb/ test_mean.binaryproto
+\end{minted}
+
+\paragraph{} You can then close your terminal and open your favorite web browser to http://localhost:8887/ . This will open the Jupyter Notebook instance that is inside the container.
+
+\paragraph{} You will get to a login form. In the "Password or token" field, enter "demo". You will then be redirected to the usual Jupyter Notebook interface. Open the "notebooks" folder, and then the "01_CNN_Training.ipynb" if you want to train the neural network, or "02_CNN_Usage.ipynb" if you want to use a pre-trained one or your own.
 
 \section{Description of the work}
 
