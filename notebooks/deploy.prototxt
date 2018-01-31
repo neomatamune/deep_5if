@@ -2,6 +2,7 @@ layer {
   name: "Trainset"
   type: "Data"
   top: "data"
+  top: "label"
   data_param {
     source: "../data/test_lmdb"
     backend: LMDB
@@ -143,6 +144,13 @@ layer {
       value: 0.01
     }
   }
+}
+layer {
+  name: "accuracy"
+  type: "Accuracy"
+  bottom: "ip2"
+  bottom: "label"
+  top: "accuracy"
 }
 layer {
   name: "softmax"
