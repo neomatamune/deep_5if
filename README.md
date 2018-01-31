@@ -12,7 +12,7 @@ Clone this repository:
 git clone
 ```
 
-Run the build.sh, then start_jupyter with sudo if you haven't set your user so that you can use docker commands without being root.
+Run the build.sh, then start_jupyter, both with sudo rights if you haven't set your user so that you can use docker commands without being root.
 
 ```bash
 sudo ./build.sh
@@ -70,6 +70,10 @@ You can then close your terminal and open your favorite web browser to http://lo
 
 You will get to a login form. In the "Password or token" field, enter "demo". You will then be redirected to the usual Jupyter Notebook interface. Open the "notebooks" folder, and then the "01_CNN_Training.ipynb" if you want to train the neural network, or "02_CNN_Usage.ipynb" if you want to use a pre-trained one or your own.
 
+## About CPU Threads number and the rebuild process
+
+To change the number of threads used by caffe during training, open the "./caffe-intel-4threads/Dockerfile" file, change the "ENV OMP_NUM_THREADS=4" value to whichever number of threads you wish to use and restart the build process (run build.sh and start_jupyter.sh after making sure you stop and removed your previous container with "sudo docker stop deep_jupyter && sudo docker rm deep_jupyter"). No need to rebuild the image database, since it was stored in a shared folder with the host machine.
+
 ## Resources
 
 + Stefan Duffner's website (where test data and latest version of the assignment can be found):
@@ -86,3 +90,9 @@ https://towardsdatascience.com/playing-with-caffe-and-docker-to-build-deep-learn
 
 + Deep Learning with Caffe tutorial, to get started:
 http://christopher5106.github.io/deep/learning/2015/09/04/Deep-learning-tutorial-on-Caffe-Technology.html
+
++ Custom Face Images Dataset ;
+http://www.vision.caltech.edu/Image_Datasets/Caltech_10K_WebFaces/Caltech_WebFaces.tar (comes from [this website](http://www.vision.caltech.edu/Image_Datasets/Caltech_10K_WebFaces/#Download
+))
+
+

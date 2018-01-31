@@ -1,2 +1,3 @@
 scikit-learn
 jupyter
+opencv-python >= 2.4.9

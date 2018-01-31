@@ -121,5 +121,26 @@ notebooks/deep_iter_45000.caffemodel
 notebooks/deep_iter_45000.solverstate
 notebooks/deep_iter_5000.caffemodel
 notebooks/deep_iter_5000.solverstate
+notebooks/deep_iter_50000.caffemodel
+notebooks/deep_iter_50000.solverstate
+notebooks/deep_iter_55000.caffemodel
+notebooks/deep_iter_55000.solverstate
+notebooks/deep_iter_60000.caffemodel
+notebooks/deep_iter_60000.solverstate
+notebooks/deep_iter_65000.caffemodel
+notebooks/deep_iter_65000.solverstate
+notebooks/deep_iter_70000.caffemodel
+notebooks/deep_iter_70000.solverstate
+notebooks/deep_iter_75000.caffemodel
+notebooks/deep_iter_75000.solverstate
+notebooks/deep_iter_80000.caffemodel
+notebooks/deep_iter_80000.solverstate
+notebooks/deep_iter_85000.caffemodel
+notebooks/deep_iter_85000.solverstate
+notebooks/deep_iter_90000.caffemodel
+notebooks/deep_iter_90000.solverstate
+notebooks/deep_iter_95000.caffemodel
+notebooks/deep_iter_95000.solverstate
+
 
 .directory
