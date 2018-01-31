@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET\PYGZus{}WITHOUT\PYGZus{}FACE} \PYG{o}{=} \PYG{l+m+mi}{26950}
+\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET\PYGZus{}WITH\PYGZus{}A\PYGZus{}FACE} \PYG{o}{=} \PYG{l+m+mi}{64770}
+
+\PYG{n}{TOTAL\PYGZus{}NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET} \PYG{o}{=} \PYG{p}{(}\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET\PYGZus{}WITHOUT\PYGZus{}FACE} \PYG{o}{+}
+                                          \PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET\PYGZus{}WITH\PYGZus{}A\PYGZus{}FACE}\PYG{p}{)}
+
+\PYG{n}{total\PYGZus{}accuracy} \PYG{o}{=} \PYG{l+m+mi}{0}
+\PYG{n}{batch\PYGZus{}size} \PYG{o}{=} \PYG{n}{net\PYGZus{}training}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{num}
+\PYG{n}{test\PYGZus{}iters} \PYG{o}{=} \PYG{n}{TOTAL\PYGZus{}NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET} \PYG{o}{/} \PYG{n}{batch\PYGZus{}size}
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{test\PYGZus{}iters}\PYG{p}{):}
+    \PYG{n}{net\PYGZus{}training}\PYG{o}{.}\PYG{n}{forward}\PYG{p}{()}
+    \PYG{n}{batch\PYGZus{}accuracy} \PYG{o}{=} \PYG{n}{net\PYGZus{}training}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{data}
+    \PYG{n}{total\PYGZus{}accuracy} \PYG{o}{+=} \PYG{n}{batch\PYGZus{}accuracy}
+\PYG{n}{accuracy} \PYG{o}{=} \PYG{n}{total\PYGZus{}accuracy} \PYG{o}{/} \PYG{n}{test\PYGZus{}iters}
+
+\PYG{k}{print} \PYG{l+s+s2}{\PYGZdq{}Accuracy of trained network on train data: \PYGZob{}\PYGZcb{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{accuracy}\PYG{p}{)}
+\PYG{k}{print} \PYG{l+s+s2}{\PYGZdq{}Number of well classified images on train data: \PYGZob{}\PYGZcb{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}
+    \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{accuracy} \PYG{o}{*} \PYG{n}{TOTAL\PYGZus{}NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TRAINING\PYGZus{}SET}\PYG{p}{))}
+\end{Verbatim}

@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}GOOGLEFACE\PYGZus{}TEST} \PYG{o}{=} \PYG{l+m+mi}{632}
+\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}GOOGLE\PYGZus{}IMAGES} \PYG{o}{=} \PYG{l+m+mi}{6831}
+\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}YALEFACES\PYGZus{}TEST} \PYG{o}{=} \PYG{l+m+mi}{165}
+
+\PYG{n}{TOTAL\PYGZus{}NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TEST\PYGZus{}SET} \PYG{o}{=} \PYG{p}{(}\PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}YALEFACES\PYGZus{}TEST} \PYG{o}{+}
+                                      \PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}GOOGLE\PYGZus{}IMAGES} \PYG{o}{+}
+                                      \PYG{n}{NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}GOOGLEFACE\PYGZus{}TEST}\PYG{p}{)}
+
+\PYG{n}{img\PYGZus{}classified\PYGZus{}as\PYGZus{}faces} \PYG{o}{=} \PYG{l+m+mi}{0}
+\PYG{n}{img\PYGZus{}classified} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+\PYG{n}{total\PYGZus{}accuracy} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+\PYG{n}{batch\PYGZus{}size} \PYG{o}{=} \PYG{n}{net\PYGZus{}testing}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{num}
+\PYG{n}{test\PYGZus{}iters} \PYG{o}{=} \PYG{n}{TOTAL\PYGZus{}NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TEST\PYGZus{}SET} \PYG{o}{/} \PYG{n}{batch\PYGZus{}size}
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{test\PYGZus{}iters}\PYG{p}{):}
+    \PYG{n}{net\PYGZus{}testing}\PYG{o}{.}\PYG{n}{forward}\PYG{p}{()}
+    \PYG{n}{batch\PYGZus{}accuracy} \PYG{o}{=} \PYG{n}{net\PYGZus{}testing}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{data}
+    \PYG{n}{total\PYGZus{}accuracy} \PYG{o}{+=} \PYG{n}{batch\PYGZus{}accuracy}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{batch\PYGZus{}size}\PYG{p}{):}
+        \PYG{n}{img\PYGZus{}classified} \PYG{o}{+=} \PYG{l+m+mi}{1}
+        \PYG{k}{if} \PYG{n}{net\PYGZus{}testing}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}prob\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{data}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{():}
+            \PYG{n}{img\PYGZus{}classified\PYGZus{}as\PYGZus{}faces} \PYG{o}{+=} \PYG{l+m+mi}{1}
+
+
+\PYG{n}{accuracy} \PYG{o}{=} \PYG{n}{total\PYGZus{}accuracy} \PYG{o}{/} \PYG{n}{test\PYGZus{}iters}
+
+\PYG{k}{print} \PYG{l+s+s2}{\PYGZdq{}Number of faces found on test : \PYGZob{}\PYGZcb{} / \PYGZob{}\PYGZcb{} images\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{img\PYGZus{}classified\PYGZus{}as\PYGZus{}faces}\PYG{p}{,}
+                                                              \PYG{n}{img\PYGZus{}classified}\PYG{p}{)}
+\PYG{k}{print} \PYG{l+s+s2}{\PYGZdq{}Accuracy of trained network on test data: \PYGZob{}\PYGZcb{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{accuracy}\PYG{p}{)}
+\PYG{k}{print} \PYG{l+s+s2}{\PYGZdq{}Number of well classified images on test data: \PYGZob{}\PYGZcb{}\PYGZdq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}
+    \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{accuracy} \PYG{o}{*} \PYG{n}{TOTAL\PYGZus{}NUMBER\PYGZus{}OF\PYGZus{}IMAGES\PYGZus{}ON\PYGZus{}TEST\PYGZus{}SET}\PYG{p}{))}
+\end{Verbatim}

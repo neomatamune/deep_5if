@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{caffe}
+
+\PYG{n}{caffe}\PYG{o}{.}\PYG{n}{set\PYGZus{}mode\PYGZus{}cpu}\PYG{p}{()}
+
+\PYG{n}{model\PYGZus{}train} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}conv.prototxt\PYGZsq{}}
+\PYG{n}{model\PYGZus{}test} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}deploy.prototxt\PYGZsq{}}
+\PYG{n}{weights} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}deep\PYGZus{}iter\PYGZus{}100000.caffemodel\PYGZsq{}}
+
+\PYG{n}{net\PYGZus{}training} \PYG{o}{=} \PYG{n}{caffe}\PYG{o}{.}\PYG{n}{Net}\PYG{p}{(}\PYG{n}{model\PYGZus{}train}\PYG{p}{,} \PYG{n}{weights}\PYG{p}{,} \PYG{n}{caffe}\PYG{o}{.}\PYG{n}{TEST}\PYG{p}{)}
+\PYG{n}{net\PYGZus{}testing} \PYG{o}{=} \PYG{n}{caffe}\PYG{o}{.}\PYG{n}{Net}\PYG{p}{(}\PYG{n}{model\PYGZus{}test}\PYG{p}{,} \PYG{n}{weights}\PYG{p}{,} \PYG{n}{caffe}\PYG{o}{.}\PYG{n}{TEST}\PYG{p}{)}
+\end{Verbatim}

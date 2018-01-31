@@ -1,0 +1,80 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{for} \PYG{n}{id\PYGZus{}img} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{8}\PYG{p}{):}
+    \PYG{c+c1}{\PYGZsh{} Used on 7 images named 1.jpg to 7.jpg}
+    \PYG{n}{image\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}../data/\PYGZsq{}} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{id\PYGZus{}img}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+s1}{\PYGZsq{}.jpg\PYGZsq{}}
+
+    \PYG{c+c1}{\PYGZsh{} Open image and convert to gray scale}
+    \PYG{n}{im} \PYG{o}{=}  \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{)}
+    \PYG{n}{im} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{cvtColor}\PYG{p}{(}\PYG{n}{im}\PYG{p}{,} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{COLOR\PYGZus{}BGR2GRAY}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Save base image for future comparison}
+    \PYG{n}{imbase} \PYG{o}{=} \PYG{n}{im}
+
+    \PYG{n}{scale} \PYG{o}{=} \PYG{l+m+mi}{1}
+
+    \PYG{n}{base\PYGZus{}save\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/results/\PYGZdq{}}
+    \PYG{n}{img\PYGZus{}base\PYGZus{}name} \PYG{o}{=} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{id\PYGZus{}img}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZdq{}}
+
+    \PYG{c+c1}{\PYGZsh{} Used to batch save detected faces, and avoid writing to disk at every loop}
+    \PYG{n}{keep} \PYG{o}{=} \PYG{n+nb}{dict}\PYG{p}{()}
+
+    \PYG{c+c1}{\PYGZsh{} Tuple with (width, height)}
+    \PYG{n}{shifting\PYGZus{}window\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{36}\PYG{p}{,} \PYG{l+m+mi}{36}
+    \PYG{n}{offset} \PYG{o}{=} \PYG{l+m+mi}{4}
+
+    \PYG{n}{min\PYGZus{}probability\PYGZus{}for\PYGZus{}a\PYGZus{}match} \PYG{o}{=} \PYG{l+m+mf}{0.99}
+
+    \PYG{k}{while} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{l+m+mi}{2} \PYG{o+ow}{and} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{im}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{\PYGZgt{}} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{l+m+mi}{2}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} Downscale of the image using opencv pyramid scaling}
+        \PYG{n}{im} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{pyrDown}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)}
+        \PYG{n}{scale}\PYG{o}{*=}\PYG{l+m+mi}{2}
+
+        \PYG{n}{img\PYGZus{}scale\PYGZus{}name} \PYG{o}{=} \PYG{n}{img\PYGZus{}base\PYGZus{}name} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{scale}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZdq{}}
+
+        \PYG{n}{showarray}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Face detector}
+        \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{im}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{offset}\PYG{p}{):}
+            \PYG{k}{for} \PYG{n}{y} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{im}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{\PYGZhy{}} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{offset}\PYG{p}{):}
+                \PYG{n}{img\PYGZus{}name} \PYG{o}{=} \PYG{n}{img\PYGZus{}scale\PYGZus{}name} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZdq{}} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{y}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}.png\PYGZdq{}}
+
+                \PYG{c+c1}{\PYGZsh{} Create the shift window image on the original scaled image}
+                \PYG{n}{imtmp} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{im} \PYG{p}{[}\PYG{n}{x}\PYG{p}{:}\PYG{n}{x} \PYG{o}{+} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{y}\PYG{p}{:}\PYG{n}{y} \PYG{o}{+} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]])}
+
+                \PYG{c+c1}{\PYGZsh{} Transform the data to be compatible as an entry to the neural network}
+                \PYG{n}{im\PYGZus{}input} \PYG{o}{=} \PYG{n}{imtmp}\PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{newaxis}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{newaxis}\PYG{p}{,} \PYG{p}{:,} \PYG{p}{:]} \PYG{o}{/} \PYG{l+m+mf}{256.0}
+
+                \PYG{c+c1}{\PYGZsh{} Input the data in the NN}
+                \PYG{n}{net}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{o}{*}\PYG{n}{im\PYGZus{}input}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+                \PYG{n}{net}\PYG{o}{.}\PYG{n}{blobs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}data\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{data}\PYG{p}{[}\PYG{o}{...}\PYG{p}{]} \PYG{o}{=} \PYG{n}{imtmp}
+
+                \PYG{c+c1}{\PYGZsh{} Run the NN}
+                \PYG{n}{output} \PYG{o}{=} \PYG{n}{net}\PYG{o}{.}\PYG{n}{forward}\PYG{p}{()}
+
+                \PYG{c+c1}{\PYGZsh{} If the probability that the image that is in the}
+                \PYG{c+c1}{\PYGZsh{}shift window is a face is higher than 99\PYGZpc{}}
+                \PYG{k}{if} \PYG{n}{output}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}prob\PYGZsq{}}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{min\PYGZus{}probability\PYGZus{}for\PYGZus{}a\PYGZus{}match}\PYG{p}{:}
+                    \PYG{c+c1}{\PYGZsh{} We add a bounding box in the original image}
+                    \PYG{n}{white} \PYG{o}{=} \PYG{l+m+mi}{255}
+                    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range} \PYG{p}{(}\PYG{n}{x} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{,} \PYG{p}{(}\PYG{n}{x} \PYG{o}{+} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{):}
+                        \PYG{n}{imbase}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{y} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{]} \PYG{o}{=} \PYG{n}{white}
+                        \PYG{n}{imbase}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][(}\PYG{n}{y} \PYG{o}{+} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{]} \PYG{o}{=} \PYG{n}{white}
+                    \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{y} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{,} \PYG{p}{(}\PYG{n}{y} \PYG{o}{+} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{):}
+                        \PYG{n}{imbase}\PYG{p}{[}\PYG{n}{x} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{white}
+                        \PYG{n}{imbase}\PYG{p}{[(}\PYG{n}{x} \PYG{o}{+} \PYG{n}{shifting\PYGZus{}window\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])} \PYG{o}{*} \PYG{n}{scale}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{white}
+
+                    \PYG{c+c1}{\PYGZsh{} Save this in memory}
+                    \PYG{n}{save\PYGZus{}dir} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}1/\PYGZdq{}}
+                    \PYG{n}{save\PYGZus{}path} \PYG{o}{=} \PYG{n}{base\PYGZus{}save\PYGZus{}path} \PYG{o}{+} \PYG{n}{save\PYGZus{}dir} \PYG{o}{+} \PYG{n}{img\PYGZus{}name}
+                    \PYG{n}{keep}\PYG{p}{[}\PYG{n}{save\PYGZus{}path}\PYG{p}{]} \PYG{o}{=} \PYG{n}{imtmp}
+
+    \PYG{c+c1}{\PYGZsh{} When everything is done we show the original image}
+    \PYG{c+c1}{\PYGZsh{}with the bounding boxes and save it as a file}
+    \PYG{n}{showarray}\PYG{p}{(}\PYG{n}{imbase}\PYG{p}{)}
+    \PYG{n}{save\PYGZus{}results} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}../data/results/\PYGZdq{}} \PYG{o}{+} \PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{id\PYGZus{}img}\PYG{p}{)} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}.jpg\PYGZdq{}}
+    \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imwrite}\PYG{p}{(}\PYG{n}{save\PYGZus{}results}\PYG{p}{,} \PYG{n}{imbase}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} We also save the face subimages we found to improve the NN in the future}
+    \PYG{k}{for} \PYG{n}{path}\PYG{p}{,}\PYG{n}{img} \PYG{o+ow}{in} \PYG{n}{keep}\PYG{o}{.}\PYG{n}{iteritems}\PYG{p}{():}
+        \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imwrite}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,} \PYG{n}{img}\PYG{p}{)}
+\end{Verbatim}

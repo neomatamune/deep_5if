@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k+kn}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k+kn}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{PIL} \PYG{k+kn}{import} \PYG{n}{Image}
+\PYG{k+kn}{import} \PYG{n+nn}{cv2}
+\PYG{k+kn}{import} \PYG{n+nn}{caffe}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+
+\PYG{n}{caffe}\PYG{o}{.}\PYG{n}{set\PYGZus{}mode\PYGZus{}cpu}\PYG{p}{()}
+\PYG{n}{model} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}deploy.prototxt\PYGZsq{}}
+\PYG{n}{weights} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}deep\PYGZus{}iter\PYGZus{}100000.caffemodel\PYGZsq{}}
+\PYG{n}{net} \PYG{o}{=} \PYG{n}{caffe}\PYG{o}{.}\PYG{n}{Net}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n}{weights}\PYG{p}{,} \PYG{n}{caffe}\PYG{o}{.}\PYG{n}{TEST}\PYG{p}{)}
+
+\PYG{k}{try}\PYG{p}{:}
+    \PYG{n}{os}\PYG{o}{.}\PYG{n}{mkdir}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}../data/results/\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{except} \PYG{n+ne}{OSError}\PYG{p}{:} \PYG{k}{pass}
+\PYG{k}{try}\PYG{p}{:}
+    \PYG{n}{os}\PYG{o}{.}\PYG{n}{mkdir}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}../data/results/1/\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{except} \PYG{n+ne}{OSError}\PYG{p}{:} \PYG{k}{pass}
+\end{Verbatim}

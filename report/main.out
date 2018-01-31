@@ -1,0 +1,12 @@
+\BOOKMARK [1][-]{section*.1}{Table des mati\350res}{}% 1
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.2}{Running the project}{}% 3
+\BOOKMARK [1][-]{section.3}{Description of the work}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Setting up Caffe to be used through PyCaffe and Docker}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Training the network}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Code}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Adjusting the Docker image for better performances during training}{subsection.3.2}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Evaluating the detection performance of our NN}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Code}{subsection.3.3}% 10
+\BOOKMARK [2][-]{subsection.3.4}{Implementing a naive face detector}{section.3}% 11
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 12
