@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} \PYG{n+nb}{cd} data
+
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} /opt/caffe/build/tools/convert\PYGZus{}imageset \PYGZhy{}\PYGZhy{}shuffle \PYGZhy{}\PYGZhy{}gray
+train\PYGZus{}images/ posneg.txt train\PYGZus{}lmdb
+
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} /opt/caffe/build/tools/convert\PYGZus{}imageset \PYGZhy{}\PYGZhy{}shuffle \PYGZhy{}\PYGZhy{}gray
+test\PYGZus{}images/ testposneg.txt test\PYGZus{}lmdb
+
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} /opt/caffe/build/tools/compute\PYGZus{}image\PYGZus{}mean train\PYGZus{}lmdb/ train\PYGZus{}mean.binaryproto
+
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} /opt/caffe/build/tools/compute\PYGZus{}image\PYGZus{}mean test\PYGZus{}lmdb/ test\PYGZus{}mean.binaryproto
+\end{Verbatim}

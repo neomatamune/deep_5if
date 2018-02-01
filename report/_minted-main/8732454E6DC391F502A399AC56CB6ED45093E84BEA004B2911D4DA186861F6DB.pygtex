@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} sudo ./build.sh
+\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}} sudo ./start\PYGZus{}jupyter.sh
+\end{Verbatim}

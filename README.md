@@ -38,11 +38,13 @@ You can check whether the container started properly by writing:
 sudo docker ps -a
 ```
 
-If everything is fine you should get a line like the following (what matters here is that the "STATUS" field):
+If everything is fine you should get a line like the following (what matters here is that the "STATUS" field is "UP"):
 
 ```
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS                    NAMES
-52aac7bf9976        deep                "/bin/sh -c 'jupyter…"   13 minutes ago      Up 13 minutes             0.0.0.0:8887->8888/tcp   deep_jupyter
+CONTAINER ID        IMAGE               COMMAND                  CREATED       
+52aac7bf9976        deep                "/bin/sh -c 'jupyter…"   13 minutes ago
+STATUS                    PORTS                    NAMES
+Up 13 minutes             0.0.0.0:8887->8888/tcp   deep_jupyter
 
 ```
 
@@ -68,7 +70,7 @@ cd data
 
 You can then close your terminal and open your favorite web browser to http://localhost:8887/ . This will open the Jupyter Notebook instance that is inside the container.
 
-You will get to a login form. In the "Password or token" field, enter "demo". You will then be redirected to the usual Jupyter Notebook interface. Open the "notebooks" folder, and then the "01_CNN_Training.ipynb" if you want to train the neural network, or "02_CNN_Usage.ipynb" if you want to use a pre-trained one or your own.
+You will get to a login form. In the "Password or token" field, enter "demo". You will then be redirected to the usual Jupyter Notebook interface. Open the "notebooks" folder, and then the "01_CNN_Training.ipynb" if you want to train the neural network,  "02_CNN_Usage.ipynb" if you want to use a pre-trained one or your own, or "03_CNN_Image_Parsing.ipynb" if you wish to use the neural network to detect faces in a given set of images.
 
 ## About CPU Threads number and the rebuild process
 
@@ -94,5 +96,3 @@ http://christopher5106.github.io/deep/learning/2015/09/04/Deep-learning-tutorial
 + Custom Face Images Dataset ;
 http://www.vision.caltech.edu/Image_Datasets/Caltech_10K_WebFaces/Caltech_WebFaces.tar (comes from [this website](http://www.vision.caltech.edu/Image_Datasets/Caltech_10K_WebFaces/#Download
 ))
-
-

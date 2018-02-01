@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+CONTAINER ID        IMAGE               COMMAND                  CREATED
+52aac7bf9976        deep                \PYG{l+s+s2}{\PYGZdq{}/bin/sh \PYGZhy{}c \PYGZsq{}jupyter…\PYGZdq{}}   \PYG{l+m}{13} minutes ago
+STATUS                    PORTS                    NAMES
+Up \PYG{l+m}{13} minutes             \PYG{l+m}{0}.0.0.0:8887\PYGZhy{}\PYGZgt{}8888/tcp   deep\PYGZus{}jupyter
+\end{Verbatim}
