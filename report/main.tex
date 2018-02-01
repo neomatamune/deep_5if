@@ -371,13 +371,15 @@ for id_img in range(1, 8):
 \caption{Same image but with false positive bounding boxes}
 \end{figure}
 
-\paragraph{} With 7 images (since we had no time to run more than this, given the meager performance of our naive algorithm and the fact that we did not have an appropriate machine at our disposal) that we knew had no faces in them, we created a lot of false positives thumbnails and used them for training in the "no face" category (0 folder). To balance the greater number of negative images, we simply copy pasted the files in the positive images to match it.
+\paragraph{} With 7 images (since we had no time to run more than this, given the meager performance of our naive algorithm and the fact that we did not have an appropriate machine at our disposal) that we knew had no faces in them, we created a lot of false positives thumbnails and used them for training in the "no face" category (0 folder).
+
+\paragraph{} The results of simply adding these 17746 false-positives tremendously improved the facial recognition : for the basic provided network trained with 100 000 iterations, we got an accuracy of 1.0 for the training set, and an accuracy of 0.896012931034 for the Google and Yale datasets (which is definitely way better than before !). When testing the same 7 images, no faces are found any longer.
 
 \newpage
 
 \section{Conclusion}
 
-\paragraph{} Ideally, we would have to apply the same technique as in the last section : that is, using the NN on images we know that they contain no faces and feed the false positives to train the NN again and again.
+\paragraph{} Ideally, in order to improve our results, we would have to apply the same technique as in the last section more thoroughly : that is, using the NN on images we know that they contain no faces and feed the false positives to train the NN again and again.
 
 \paragraph{} Eventually, we would get to playing with other NN configurations (which we had no time to, given the speed at which our tests were running), modifying the layers especially : their nature, complexity, quantity... Knowing that the convolution layers detect features that make a face : the more a convolution layer has elements, the more it will be able to detect different features (for example, if the first layer had only a single neuron, it would likely end up recognizing an oval shape, if it had two, it would probably detect two oval shapes,...).
 
